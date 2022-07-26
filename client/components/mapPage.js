@@ -3,8 +3,9 @@ import {useMemo} from 'react';
 import {GoogleMap, useLoadScript, Marker} from '@react-google-maps/api';
 
 
+
 export default function MapHome() {
-        const {isLoaded} = useLoadScript({googleMapsApiKey: 'AIzaSyCFpWH1-N-d2C612XkRtnbdmF0efmwT6vc'});
+        const {isLoaded} = useLoadScript({googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY});
         const markerOptions = useMemo(()=>({
             draggable: true
         }),[]);
