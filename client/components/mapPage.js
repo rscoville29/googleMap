@@ -1,19 +1,29 @@
 import React from 'react';
 import {useMemo} from 'react';
-import {GoogleMap, useLoadScript, MarkerF} from '@react-google-maps/api';
+import {GoogleMap, useLoadScript, Marker} from '@react-google-maps/api';
 
 
 export default function MapHome() {
         const {isLoaded} = useLoadScript({googleMapsApiKey: 'AIzaSyCFpWH1-N-d2C612XkRtnbdmF0efmwT6vc'});
+        const markerOptions = useMemo(()=>({
+            draggable: true
+        }),[]);
+
+        const mapOptions = useMemo(()=>({
+            disableDefaultUI: true,
+            clickableIcons: false
+        }),[]);
+
+        const clickHandler = () => {
+            console.log('testing google maps', google.maps.Marker.position);
+        }
+        const center = {lat: 40.7051, lng: -74.0092}
         function Map(){
-            const center = useMemo(() =>(
-                {lat: 40.7051, lng: -74.0092}
-            ), []);
             return (
                 <div>
                     <h1>testing</h1>
-                <GoogleMap zoom={10} center={center} mapContainerClassName='mapContainer'>
-                    <MarkerF position={center} />
+                <GoogleMap onClick={clickHandler} options={mapOptions} zoom={10} center={center} mapContainerClassName='mapContainer'>
+                    <Marker options={markerOptions} position={center} />
                 </GoogleMap>
                 </div>
             )
