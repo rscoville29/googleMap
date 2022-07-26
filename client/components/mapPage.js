@@ -7,7 +7,7 @@ export default function MapHome() {
         const {isLoaded} = useLoadScript({googleMapsApiKey: 'AIzaSyCFpWH1-N-d2C612XkRtnbdmF0efmwT6vc'});
         function Map(){
             const center = useMemo(() =>(
-                {lat: 44, lng: -88}
+                {lat: 40.7051, lng: -74.0092}
             ), []);
             return (
                 <div>
