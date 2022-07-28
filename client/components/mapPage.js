@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useMemo} from 'react';
 import {GoogleMap, useLoadScript, Marker} from '@react-google-maps/api';
 
 
 
 export default function MapHome() {
+        // const [lat, setLat] = useState(40.7051);
+        // const [lng, setLng] = useState(-74.0092);
+
+        const[state, setState] = useState({lat: 40.7051, lng: -74.0092 })
+
         const {isLoaded} = useLoadScript({googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY});
         const markerOptions = useMemo(()=>({
             draggable: true
@@ -15,16 +20,20 @@ export default function MapHome() {
             clickableIcons: false
         }),[]);
 
-        const clickHandler = () => {
-            console.log('testing google maps', google.maps.Marker.position);
+        const clickHandler = (event) => {
+            console.log(event.latLng);
+            // setLat(event.latLng.lat());
+            // setLng(event.latLng.lng());
+            setState({lat: event.latLng.lat(), lng: event.latLng.lng()});
+            console.log('&&& CENTER', state);
         }
-        const center = {lat: 40.7051, lng: -74.0092}
+        
         function Map(){
             return (
                 <div>
                     <h1>testing</h1>
-                <GoogleMap onClick={clickHandler} options={mapOptions} zoom={10} center={center} mapContainerClassName='mapContainer'>
-                    <Marker options={markerOptions} position={center} />
+                <GoogleMap onClick={clickHandler} options={mapOptions} zoom={8} center={state} mapContainerClassName='mapContainer'>
+                    <Marker options={markerOptions} position={state} />
                 </GoogleMap>
                 </div>
             )
