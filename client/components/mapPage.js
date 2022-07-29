@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useMemo} from 'react';
 import {GoogleMap, useLoadScript, Marker} from '@react-google-maps/api';
+import Restaurants from './Restaurants';
 
 
 
@@ -35,6 +36,7 @@ export default function MapHome() {
                 <GoogleMap onClick={clickHandler} options={mapOptions} zoom={8} center={state} mapContainerClassName='mapContainer'>
                     <Marker options={markerOptions} position={state} />
                 </GoogleMap>
+                < Restaurants data={state} />
                 </div>
             )
         }

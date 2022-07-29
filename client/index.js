@@ -12,11 +12,3 @@ root.render(
     <MapHome />
      </Provider>
 );
-
-// render(
-//     <Provider store={store}>
-//       <MapHome />
-//     </Provider>,
-//   document.getElementById('app')
- 
-// );
