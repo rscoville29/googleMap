@@ -10,6 +10,11 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 
 //can we use ./public here instead of the actual html file?
+// app.get(`/https://maps.googleapis.com/maps/api/place/nearbysearch/:params`, async (req, res, next) => {
+//     let {params} = req.params;
+//     let response = await axios.get()
+// })
+
 app.get('*', (req, res, next) => {
 
     res.sendFile(path.join(__dirname, '../public/index.html'))
